@@ -1,16 +1,18 @@
 {
   "author": "support@nativecode.com",
-  "description": "Set of useful collection types.",
+  "description": "Set of useful (maybe) collection types.",
   "homepage": "https://github.com/nativecode-dev/nofrills-collections#readme",
   "license": "MIT",
   "main": "./lib/index.js",
   "name": "@nofrills/collections",
   "types": "./lib/index.d.ts",
-  "version": "0.8.0",
+  "version": "0.9.0",
   "bugs": {
     "url": "https://github.com/nativecode-dev/nofrills-collections/issues"
   },
-  "dependencies": {},
+  "dependencies": {
+    "chai-iterator": "^1.1.4"
+  },
   "devDependencies": {
     "@types/chai": "^4.0.1",
     "@types/mocha": "^2.2.41",
@@ -25,7 +27,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/nativecode-dev/nofrills-collections.git"
+    "url": "https://github.com/nativecode-dev/nofrills-collections.git"
   },
   "scripts": {
     "build": "tsc --project .",
@@ -34,7 +36,7 @@
     "lint": "tslint src/",
     "start": "node lib/",
     "prestart": "npm run build",
-    "test": "nyc mocha tests/",
+    "test": "nyc mocha --recursive tests/",
     "pretest": "npm run build",
     "coveralls": "nyc npm test && nyc report --reporter=text-lcov | coveralls",
     "push": "npm publish --access public",
