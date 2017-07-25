@@ -6,7 +6,7 @@
   "main": "./lib/index.js",
   "name": "@nofrills/collections",
   "types": "./lib/index.d.ts",
-  "version": "0.9.1",
+  "version": "0.10.0",
   "bugs": {
     "url": "https://github.com/nativecode-dev/nofrills-collections/issues"
   },
@@ -14,14 +14,29 @@
   "devDependencies": {
     "@types/chai": "^4.0.1",
     "@types/mocha": "^2.2.41",
-    "@types/node": "^8.0.6",
-    "chai": "^4.0.2",
+    "@types/node": "^8.0.16",
+    "chai": "^4.1.0",
     "coveralls": "^2.13.1",
+    "cross-env": "^5.0.1",
     "mocha": "^3.4.2",
-    "nyc": "^11.0.3",
+    "nyc": "^11.1.0",
     "rimraf": "^2.6.1",
-    "tslint": "^5.4.3",
-    "typescript": "^2.4.1"
+    "ts-node": "^3.3.0",
+    "tslint": "^5.5.0",
+    "typescript": "^2.4.2"
+  },
+  "nyc": {
+    "all": true,
+    "exclude": [],
+    "extension": [
+      ".ts"
+    ],
+    "include": [
+      "tests/*.ts",
+      "tests/**/*.ts"
+    ],
+    "instrument": true,
+    "sourceMap": true
   },
   "repository": {
     "type": "git",
@@ -34,10 +49,11 @@
     "lint": "tslint src/",
     "start": "node lib/",
     "prestart": "npm run build",
-    "test": "nyc mocha --recursive tests/",
+    "test": "cross-env DEBUG= nyc mocha --opts mocha.opts",
     "pretest": "npm run build",
-    "coveralls": "nyc npm test && nyc report --reporter=text-lcov | coveralls",
+    "coveralls": "nyc report --reporter=text-lcov | coveralls",
     "push": "npm publish --access public",
-    "prepush": "npm run test"
+    "prepush": "npm run test",
+    "clean": "rimraf .nyc_output && rimraf coverage && rimraf lib"
   }
 }
